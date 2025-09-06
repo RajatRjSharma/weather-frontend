@@ -94,7 +94,7 @@ yarn dev
 
 ## Technologies
 
-- React 19 + TypeScript for UI
+- React 18 + TypeScript for UI
 - Vite for fast bundling and dev server
 - Material UI (MUI) for UI components and styling
 - Axios for HTTP requests

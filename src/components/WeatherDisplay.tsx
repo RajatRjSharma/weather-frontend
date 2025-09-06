@@ -5,8 +5,8 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Grid,
   useTheme,
+  Grid,
 } from "@mui/material";
 
 interface WeatherDescription {
@@ -81,16 +81,15 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
       {/* Current Weather Section */}
       <Card raised sx={{ mb: 4, p: 2 }}>
         <Grid container spacing={2} alignItems="center" justifyContent="center">
-          <Grid
-            item
-            xs={12}
-            sm={4}
+          <Box
             sx={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
+              flexGrow: 1,
+              width: { xs: "100%", sm: "33.33%" }, // roughly xs=12, sm=4 equivalents
             }}
           >
             <CardMedia
@@ -102,18 +101,17 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
             <Typography variant="h6" textTransform="capitalize" sx={{ mt: 1 }}>
               {currentWeather.description}
             </Typography>
-          </Grid>
+          </Box>
 
-          <Grid
-            item
-            xs={12}
-            sm={8}
+          <Box
             sx={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
+              flexGrow: 1,
+              width: { xs: "100%", sm: "33.33%" }, // roughly xs=12, sm=4 equivalents
             }}
           >
             {cityDetails && (
@@ -143,7 +141,7 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
               Sunrise: {sunrise}
             </Typography>
             <Typography variant="body1">Sunset: {sunset}</Typography>
-          </Grid>
+          </Box>
         </Grid>
       </Card>
 
