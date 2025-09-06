@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "/api",
+  baseURL: import.meta.env.VITE_BACKEND_URL,
   withCredentials: true,
 });
 
@@ -59,5 +59,24 @@ export function setupInterceptors(onAuthError: () => void) {
     }
   );
 }
+
+api.interceptors.request.use((config) => {
+  const csrfToken = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("XSRF-TOKEN="))
+    ?.split("=")[1];
+
+  if (csrfToken && config.method !== "get") {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (config.headers && typeof (config.headers as any).set === "function") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (config.headers as any).set("X-XSRF-TOKEN", csrfToken);
+    } else if (config.headers) {
+      // fallback (rare), mutate headers as plain object
+      (config.headers as Record<string, string>)["X-XSRF-TOKEN"] = csrfToken;
+    }
+  }
+  return config;
+});
 
 export default api;
