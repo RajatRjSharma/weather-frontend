@@ -41,7 +41,7 @@ A modern, responsive weather dashboard application built with React and TypeScri
 
 1. Clone the repository:
 
-git clone https://github.com/yourusername/weather-frontend.git
+git clone https://github.com/rajatrjsharma/weather-frontend.git
 cd weather-frontend
 
 2. Install dependencies:
