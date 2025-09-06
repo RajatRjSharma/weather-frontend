@@ -8,6 +8,14 @@
     "jsx": "react-jsx",
     "types": ["vite/client", "react", "react-dom", "node"],
     "skipLibCheck": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "declaration": false,
+    "sourceMap": true
   },
   "include": ["src"]
 }
