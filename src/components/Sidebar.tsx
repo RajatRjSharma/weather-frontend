@@ -8,9 +8,9 @@ import {
   Typography,
   Divider,
   Drawer,
-  Button,
   useTheme,
   useMediaQuery,
+  Pagination,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -116,25 +116,17 @@ const Sidebar: React.FC<SidebarProps> = ({
       <Divider sx={{ my: 2 }} />
 
       {/* Pagination Controls */}
-      <Box sx={{ display: "flex", justifyContent: "space-between", pt: 1 }}>
-        <Button
-          size="small"
-          disabled={currentPage <= 1}
-          onClick={() => onPageChange(currentPage - 1)}
-        >
-          Previous
-        </Button>
-        <Typography variant="body2" sx={{ alignSelf: "center" }}>
-          Page {currentPage} of {totalPages}
-        </Typography>
-        <Button
-          size="small"
-          disabled={currentPage >= totalPages}
-          onClick={() => onPageChange(currentPage + 1)}
-        >
-          Next
-        </Button>
-      </Box>
+      {totalPages > 1 && (
+        <Box sx={{ mt: 2, display: "flex", justifyContent: "center" }}>
+          <Pagination
+            count={totalPages}
+            page={currentPage}
+            onChange={(_event: React.ChangeEvent<unknown>, value: number) =>
+              onPageChange(value)
+            }
+          />
+        </Box>
+      )}
     </Box>
   );
 
