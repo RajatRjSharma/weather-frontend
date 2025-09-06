@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
 
   return {
-    base: '/weather-frontend/',
+    base: './weather-frontend/',
     plugins: [react()],
     server: {
       proxy: {
