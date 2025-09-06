@@ -1,6 +1,6 @@
 {
   "name": "weather-frontend",
-  "homepage": "https://weather.rajatkumarsharma.com",
+  "_homepage": "https://weather.rajatkumarsharma.com",
   "private": true,
   "version": "0.0.0",
   "type": "module",
