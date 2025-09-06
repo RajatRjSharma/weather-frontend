@@ -3,7 +3,8 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig(() => {
   return {
-    base: "/weather-frontend/",
+    // base: "/weather-frontend/",
+    base: "/",
     plugins: [react()],
   };
 });

@@ -1,7 +1,7 @@
 {
   "name": "weather-frontend",
-  "homepage_": "https://weather.rajatkumarsharma.com",
-  "homepage": "https://rajatrjsharma.github.io/weather-frontend",
+  "homepage": "https://weather.rajatkumarsharma.com",
+  "homepage_": "https://rajatrjsharma.github.io/weather-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
