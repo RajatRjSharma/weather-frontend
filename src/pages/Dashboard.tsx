@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { Box, Typography, Button, Alert } from "@mui/material";
-import AppLayout from "../components/AppLayout";
-import CitySearch from "../components/CitySearch";
-import useCurrentLocation from "../hooks/useCurrentLocation";
-import api from "../api/axios";
-import { useAuth } from "../context/authContext";
-import WeatherDisplay from "../components/WeatherDisplay";
-import AttractionsList from "../components/AttractionsList";
-import NewsList from "../components/NewsList";
+import AppLayout from "../components/AppLayout.js";
+import CitySearch from "../components/CitySearch.js";
+import useCurrentLocation from "../hooks/useCurrentLocation.js";
+import api from "../api/axios.js";
+import { useAuth } from "../context/authContext.js";
+import WeatherDisplay from "../components/WeatherDisplay.js";
+import AttractionsList from "../components/AttractionsList.js";
+import NewsList from "../components/NewsList.js";
 import { Skeleton } from "@mui/material";
 
 interface City {

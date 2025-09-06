@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Box, CssBaseline } from "@mui/material";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
-import { UserProfile } from "../types/auth";
+import Header from "./Header.js";
+import Sidebar from "./Sidebar.js";
+import { UserProfile } from "../types/auth.js";
 
 interface City {
   id?: string;

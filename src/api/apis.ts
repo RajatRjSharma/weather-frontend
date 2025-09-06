@@ -1,4 +1,4 @@
-import api from "./axios"; // your configured axios instance
+import api from "./axios.js"; // your configured axios instance
 
 // City Search with autocomplete query
 export const searchCities = async (query: string) => {

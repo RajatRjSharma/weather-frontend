@@ -10,7 +10,7 @@ import {
   CircularProgress,
   Paper,
 } from "@mui/material";
-import api from "../api/axios";
+import api from "../api/axios.js";
 
 interface RegisterProps {
   onSwitchToLogin: () => void;

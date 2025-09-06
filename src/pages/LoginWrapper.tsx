@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/authContext";
-import Login from "../components/Login";
+import { useAuth } from "../context/authContext.js";
+import Login from "../components/Login.js";
 
 const LoginWrapper = () => {
   const { login, user } = useAuth();
