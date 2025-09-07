@@ -133,7 +133,6 @@ const Dashboard = () => {
       });
       setSavedCities(res.data.data);
       setSavedCitiesNoOfPage(Math.ceil(res.data.total / savedCitiesLimit));
-      console.log(res.data.data);
     } catch (err) {
       console.error("Failed to load saved cities", err);
       setSavedCities([]);
@@ -194,8 +193,6 @@ const Dashboard = () => {
   useEffect(() => {
     if (!selectedCity) return;
 
-    console.log(selectedCity);
-
     const loadData = () => {
       // Reset errors and set all loading flags to true
       setError(null);
@@ -203,8 +200,6 @@ const Dashboard = () => {
       setLoadingForecast(true);
       setLoadingAttractions(true);
       setLoadingNews(true);
-
-      console.log(selectedCity);
 
       // Load current weather
       api
@@ -306,7 +301,6 @@ const Dashboard = () => {
   };
 
   const handleSelectSavedCity = (city: City) => {
-    console.log(city);
     setSelectedCity(city);
   };
 

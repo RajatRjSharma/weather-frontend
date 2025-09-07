@@ -58,12 +58,22 @@ const NewsList: React.FC<NewsListProps> = ({ articles, itemsPerPage = 10 }) => {
                 }
                 secondary={
                   <>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="span"
+                      sx={{ display: "block" }}
+                    >
                       {article.source?.name ?? "Unknown source"} -{" "}
                       {new Date(article.publishedAt).toLocaleDateString()}
                     </Typography>
                     {article.description && (
-                      <Typography variant="body2" color="textSecondary">
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="span"
+                        sx={{ display: "block" }}
+                      >
                         {article.description}
                       </Typography>
                     )}

@@ -11,9 +11,14 @@ const LoginWrapper = () => {
     if (user) navigate("/dashboard", { replace: true });
   }, [user, navigate]);
 
+  // Update login to accept tokens
+  const handleLoginSuccess = (accessToken: string, refreshToken: string) => {
+    login(accessToken, refreshToken);
+  };
+
   return (
     <Login
-      onLoginSuccess={login}
+      onLoginSuccess={handleLoginSuccess}
       onSwitchToRegister={() => navigate("/register")}
     />
   );

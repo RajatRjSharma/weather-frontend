@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import {
   Box,
@@ -30,6 +30,8 @@ const Register: React.FC<RegisterProps> = ({
   onSwitchToLogin,
   onRegisterSuccess,
 }) => {
+  const [serverError, setServerError] = useState<string | null>(null);
+
   const {
     handleSubmit,
     control,
@@ -52,6 +54,7 @@ const Register: React.FC<RegisterProps> = ({
 
   const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
     clearErrors();
+    setServerError(null);
 
     if (data.password !== data.confirmPassword) {
       setError("confirmPassword", {
@@ -71,19 +74,14 @@ const Register: React.FC<RegisterProps> = ({
       });
 
       if (!response.data.status) {
-        setError("email", {
-          type: "manual",
-          message: response.data.message || "Registration failed",
-        });
+        setServerError(response.data.message || "Registration failed");
       } else {
         onRegisterSuccess();
       }
     } catch (error: unknown) {
-      setError("email", {
-        type: "manual",
-        message:
-          error instanceof Error ? error.message : "Unable to reach server.",
-      });
+      setServerError(
+        error instanceof Error ? error.message : "Unable to reach server."
+      );
     }
   };
 
@@ -93,10 +91,10 @@ const Register: React.FC<RegisterProps> = ({
         Register
       </Typography>
 
-      {/* Display a general error alert for submission error */}
-      {errors.email && errors.email.type === "manual" && (
+      {/* General server error alert on top */}
+      {serverError && (
         <Alert severity="error" sx={{ mb: 2 }}>
-          {errors.email.message}
+          {serverError}
         </Alert>
       )}
 

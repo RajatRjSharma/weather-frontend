@@ -16,7 +16,7 @@ export interface UserProfile {
 export interface AuthContextType {
   user: UserProfile | null;
   loading: boolean;
-  login: () => void;
-  logout: () => void;
+  login: (accessToken?: string, refreshToken?: string) => Promise<void>;
+  logout: () => Promise<void>;
   fetchProfile: () => Promise<void>;
 }

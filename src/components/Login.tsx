@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react"; // import useState
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import {
   Box,
@@ -14,7 +14,7 @@ import api from "../api/axios.js";
 
 interface LoginProps {
   onSwitchToRegister: () => void;
-  onLoginSuccess: () => void;
+  onLoginSuccess: (accessToken: string, refreshToken: string) => void;
 }
 
 interface IFormInputs {
@@ -26,11 +26,12 @@ const Login: React.FC<LoginProps> = ({
   onSwitchToRegister,
   onLoginSuccess,
 }) => {
+  const [serverError, setServerError] = useState<string | null>(null); // general error state
+
   const {
     handleSubmit,
     control,
     formState: { errors, isSubmitting },
-    setError,
     clearErrors,
   } = useForm<IFormInputs>({
     defaultValues: {
@@ -41,22 +42,22 @@ const Login: React.FC<LoginProps> = ({
 
   const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
     clearErrors();
+    setServerError(null); // clear before submit
+
     try {
       const response = await api.post("/users/login", data);
       if (!response.data.status) {
-        setError("email", {
-          type: "manual",
-          message: response.data.message || "Login failed",
-        });
+        setServerError(response.data.message || "Login failed"); // show general error on top
       } else {
-        onLoginSuccess();
+        const { accessToken, refreshToken } = response.data.data;
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+        onLoginSuccess(accessToken, refreshToken);
       }
     } catch (error: unknown) {
-      setError("email", {
-        type: "manual",
-        message:
-          error instanceof Error ? error.message : "Unable to reach server.",
-      });
+      setServerError(
+        error instanceof Error ? error.message : "Unable to reach server."
+      );
     }
   };
 
@@ -66,10 +67,10 @@ const Login: React.FC<LoginProps> = ({
         Sign In
       </Typography>
 
-      {/* General error alert */}
-      {errors.email && errors.email.type === "manual" && (
+      {/* Show general error alert at top */}
+      {serverError && (
         <Alert severity="error" sx={{ mb: 2 }}>
-          {errors.email.message}
+          {serverError}
         </Alert>
       )}
 
